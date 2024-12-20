@@ -1,0 +1,23 @@
+services:
+  phoneopedia_web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: phoneopedia_web
+    env_file:
+      - .env
+    command: python manage.py runserver 0.0.0.0:8000
+    ports:
+      - "6001:8000"
+    volumes:
+      - .:/phoneopedia
+    working_dir: /phoneopedia
+    restart: always
+
+networks:
+  default:
+    name: phoneopedia2_network
+    external: true
+volumes:
+  phoneopedia_modules:
+
